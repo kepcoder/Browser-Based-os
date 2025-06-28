@@ -11,6 +11,8 @@ const features = [
   "--> when you Open App from desktop it will add in dock item",
   "-->Spotify with playlist, Real Browser, Binance, Brightness Control",
   "--> feels Like Real MacOs",
+  "--> You Can code and Run is Vs code ",
+  "--> Terminal With Some Commands",
   "-->Many More Feature await You  ",
 ];
 
