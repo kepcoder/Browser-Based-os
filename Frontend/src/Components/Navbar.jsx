@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { adjustBrightness, showApp } from "../store/slice";
 import { useDispatch } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = ({userName}) => {
 
 
     // Top left Corner menus on hover
@@ -15,7 +15,7 @@ const Navbar = () => {
   View:   ["Refresh", "Show Toolbar"],
   Go:     ["Back", "Home", "Downloads"],
   Window: ["Minimize", "Zoom"],
-  Help:   ["macOS Help"]
+  Help:   ["macOS Help"],
  };
   
   const [openMenu, setOpenMenu] = useState(null);
@@ -97,9 +97,11 @@ const Navbar = () => {
       </AnimatePresence>
              </div>
           ))}
+
       </div>     
 
       {/* Right side icons */}
+      <h3 className="font-bold text-xl">{userName}'s MacOs</h3>
       <div
         className="flex gap-4 items-center relative"
         onMouseEnter={() => setShowCard(true)}

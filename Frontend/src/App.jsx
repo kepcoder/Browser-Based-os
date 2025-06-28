@@ -16,14 +16,17 @@ import TerminalWindow from "./Components/Terminal.jsx";
 import VSCodeWindow from "./Components/Vscode";
 import ChatBotWindow from "./Components/Chatbot.jsx";
 import CameraWindow from "./Components/Camera.jsx";
-import BinanceWindow from './Components/Binance';
+import BinanceWindow from "./Components/Binance";
+import React, { useState } from "react";
+import Guider from "./Components/guider";
 
 const App = () => {
   const dispatch = useDispatch();
   const { openApps } = useSelector((state) => state.mainReducer);
   const { url } = useSelector((state) => state.mainReducer.wallpapers);
   const { brightnessLevel } = useSelector((state) => state.mainReducer);
-
+  const [showGuider, setShowGuider] = useState(true);
+  const [userName, setUserName] = useState("");
 
   const handleRightClick = (e) => {
     e.preventDefault();
@@ -38,6 +41,17 @@ const App = () => {
   const hideRightClick = (e) => {
     dispatch(hideMenu());
   };
+
+  if (showGuider) {
+    return (
+      <Guider
+        onStart={(name) => {
+          setUserName(name);
+          setShowGuider(false);
+        }}
+      />
+    );
+  }
 
   return (
     <AnimatePresence>
@@ -56,7 +70,7 @@ const App = () => {
           filter: `brightness(${brightnessLevel}%)`,
         }}
       >
-        <Navbar />
+        <Navbar userName={userName} />
         {Object.entries(openApps).map(([name, app]) => {
           if (!app.visible || app.minimized) return null;
           if (name === "Folder")
